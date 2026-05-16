@@ -2,8 +2,8 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>个人简历 · Limuyang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Limuyang · AI 作品集 & 简历</title>
   <style>
     * {
       margin: 0;
@@ -12,93 +12,138 @@
     }
 
     body {
-      background: #f8fafc;
-      font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
-      color: #1e293b;
+      background: #0b0d17;
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
       display: flex;
+      align-items: flex-start;
       justify-content: center;
-      padding: 2rem 1rem;
-      line-height: 1.6;
+      position: relative;
+      overflow-x: hidden;
+      padding: 2rem 1rem 4rem;
     }
 
-    .resume {
-      max-width: 800px;
+    /* 深邃星空背景 */
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
-      background: #ffffff;
-      border-radius: 1.5rem;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.03);
-      padding: 2.5rem 2.8rem;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .content-wrapper {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 800px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    /* 毛玻璃卡片通用样式 */
+    .card {
+      backdrop-filter: blur(18px) saturate(180%);
+      -webkit-backdrop-filter: blur(18px) saturate(180%);
+      background: rgba(18, 20, 40, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 2rem;
+      padding: 2.5rem;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+      color: #eef5ff;
+      transition: all 0.3s ease;
     }
 
     @media (max-width: 600px) {
-      .resume {
+      .card {
         padding: 1.8rem 1.5rem;
       }
     }
 
-    /* 头部 */
-    .header {
+    /* 个人简介头部 */
+    .profile {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 2rem;
-      border-bottom: 1px solid #e2e8f0;
-      padding-bottom: 1.5rem;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
     }
 
-    .name-section h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #0f172a;
-      letter-spacing: -0.5px;
-    }
-
-    .subtitle {
-      font-size: 1.05rem;
-      color: #475569;
-      margin-top: 0.3rem;
-      font-weight: 500;
-    }
-
-    .contact {
-      text-align: right;
-      font-size: 0.9rem;
-      color: #475569;
-    }
-
-    .contact p {
-      margin-bottom: 0.3rem;
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      gap: 0.4rem;
+      justify-content: center;
+      font-size: 3.5rem;
+      font-weight: 500;
+      color: white;
+      box-shadow: 0 10px 25px rgba(79, 70, 229, 0.45);
+      margin-bottom: 0.5rem;
+      user-select: none;
     }
 
-    .contact a {
-      color: #2563eb;
-      text-decoration: none;
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      background: linear-gradient(to right, #e0e7ff, #c4b5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    .contact a:hover {
-      text-decoration: underline;
+    .badge {
+      background: rgba(167, 139, 250, 0.18);
+      color: #c4b5fd;
+      padding: 0.3rem 1.2rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid rgba(196, 181, 253, 0.35);
+      margin-top: 0.3rem;
     }
 
-    /* 章节通用 */
-    .section {
-      margin-bottom: 2rem;
+    .bio {
+      color: #b9c2d9;
+      margin: 1.2rem 0 1rem;
+      line-height: 1.7;
+      font-size: 1.05rem;
+      text-align: center;
+      min-height: 3.5rem;
     }
 
+    /* 打字机光标 */
+    .cursor {
+      display: inline-block;
+      width: 2px;
+      background: #a78bfa;
+      margin-left: 2px;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* 通用板块标题 */
     .section-title {
       font-size: 1.2rem;
       font-weight: 700;
-      color: #1e293b;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      color: #f1f5f9;
     }
 
     .section-title::before {
@@ -106,13 +151,13 @@
       display: inline-block;
       width: 4px;
       height: 20px;
-      background: #2563eb;
+      background: #818cf8;
       border-radius: 2px;
     }
 
-    /* 经历卡片 */
+    /* 工作经历 & 教育条目 */
     .item {
-      margin-bottom: 1.3rem;
+      margin-bottom: 1.4rem;
     }
 
     .item-header {
@@ -120,41 +165,44 @@
       justify-content: space-between;
       align-items: baseline;
       flex-wrap: wrap;
+      margin-bottom: 0.2rem;
     }
 
     .item-header h3 {
       font-weight: 650;
       font-size: 1.1rem;
-      color: #0f172a;
+      color: #f8fafc;
     }
 
     .item-date {
       font-size: 0.85rem;
-      color: #64748b;
+      color: #94a3b8;
       font-weight: 500;
+      white-space: nowrap;
     }
 
     .item-subtitle {
       font-size: 0.95rem;
-      color: #334155;
+      color: #cbd5e1;
       margin: 0.2rem 0 0.5rem;
     }
 
     .item-desc {
       font-size: 0.9rem;
-      color: #475569;
-      margin-left: 0.5rem;
+      color: #b9c2d9;
+      margin-top: 0.3rem;
     }
 
     ul {
       padding-left: 1.2rem;
-      margin-top: 0.3rem;
-      color: #475569;
+      margin-top: 0.4rem;
+      color: #b9c2d9;
       font-size: 0.9rem;
+      list-style-type: square;
     }
 
     li {
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.3rem;
     }
 
     /* 技能标签 */
@@ -166,58 +214,81 @@
     }
 
     .skill-tag {
-      background: #f1f5f9;
-      color: #1e293b;
+      background: rgba(255, 255, 255, 0.08);
+      color: #e2e8f0;
       padding: 0.4rem 1rem;
       border-radius: 30px;
       font-size: 0.85rem;
       font-weight: 500;
-      border: 1px solid #e2e8f0;
+      border: 1px solid rgba(255, 255, 255, 0.12);
     }
 
-    /* 打印样式 */
-    @media print {
-      body {
-        background: white;
-        padding: 0;
-      }
-      .resume {
-        box-shadow: none;
-        border-radius: 0;
+    /* 联系方式卡片 */
+    .contact-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.2rem;
+      margin-top: 1rem;
+      color: #cbd5e1;
+      font-size: 0.9rem;
+    }
+
+    .contact-bar a {
+      color: #a5b4fc;
+      text-decoration: none;
+    }
+
+    .contact-bar a:hover {
+      text-decoration: underline;
+    }
+
+    /* 响应式 */
+    @media (max-width: 500px) {
+      h1 {
+        font-size: 2rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="resume">
+  <!-- 星空画布 -->
+  <canvas class="stars" id="starsCanvas"></canvas>
 
-    <!-- 姓名 + 联系方式 -->
-    <div class="header">
-      <div class="name-section">
+  <div class="content-wrapper">
+
+    <!-- ====== 个人简介卡 ====== -->
+    <div class="card">
+      <div class="profile">
+        <div class="avatar">🧑‍🚀</div>
         <h1>Limuyang</h1>
-        <div class="subtitle">AI 产品设计师 · 全栈开发 · 创意技术专家</div>
+        <div class="badge">AI 产品设计师 · 创意技术专家</div>
       </div>
-      <div class="contact">
-        <p>📧 <a href="mailto:limuyang@example.com">limuyang@example.com</a></p>
-        <p>📱 +86 138 0000 0000</p>
-        <p>🌐 <a href="#">portfoliosite.com</a></p>
-        <p>📍 中国 · 上海</p>
+
+      <!-- 打字机自我介绍 -->
+      <div class="bio" id="typingBio"></div>
+
+      <div class="contact-bar">
+        <span>📧 <a href="mailto:limuyang@example.com">limuyang@example.com</a></span>
+        <span>📱 +86 138 0000 0000</span>
+        <span>🌐 <a href="#">portfoliosite.com</a></span>
+        <span>📍 中国 · 上海</span>
       </div>
     </div>
 
-    <!-- 个人简介 -->
-    <div class="section">
-      <div class="section-title">关于我</div>
-      <p style="color:#475569;font-size:0.95rem;">
+    <!-- ====== 关于我 ====== -->
+    <div class="card">
+      <div class="section-title">📋 关于我</div>
+      <p style="color:#b9c2d9; font-size:0.95rem; line-height:1.7;">
         热衷于探索人工智能与交互设计的交叉领域，拥有从 0 到 1 搭建智能产品的经验。
         善于将复杂技术转化为直观、有温度的用户体验。在团队中常担任桥梁角色，推动设计与工程的协同创新。
       </p>
     </div>
 
-    <!-- 工作经历 -->
-    <div class="section">
-      <div class="section-title">工作经历</div>
-      
+    <!-- ====== 工作经历 ====== -->
+    <div class="card">
+      <div class="section-title">💼 工作经历</div>
+
       <div class="item">
         <div class="item-header">
           <h3>高级产品设计师 · 某科技有限公司</h3>
@@ -245,9 +316,9 @@
       </div>
     </div>
 
-    <!-- 项目经历 -->
-    <div class="section">
-      <div class="section-title">项目精选</div>
+    <!-- ====== 项目精选 ====== -->
+    <div class="card">
+      <div class="section-title">🚀 项目精选</div>
 
       <div class="item">
         <div class="item-header">
@@ -274,9 +345,9 @@
       </div>
     </div>
 
-    <!-- 技能 -->
-    <div class="section">
-      <div class="section-title">技能与技术</div>
+    <!-- ====== 技能 ====== -->
+    <div class="card">
+      <div class="section-title">🛠️ 技能与技术</div>
       <div class="skills-grid">
         <span class="skill-tag">React / Next.js</span>
         <span class="skill-tag">Python / FastAPI</span>
@@ -291,9 +362,9 @@
       </div>
     </div>
 
-    <!-- 教育背景 -->
-    <div class="section">
-      <div class="section-title">教育</div>
+    <!-- ====== 教育背景 ====== -->
+    <div class="card">
+      <div class="section-title">🎓 教育</div>
       <div class="item">
         <div class="item-header">
           <h3>设计学硕士 · 某知名大学</h3>
@@ -303,14 +374,99 @@
       </div>
     </div>
 
-    <!-- 语言与兴趣 -->
-    <div class="section">
-      <div class="section-title">语言 & 兴趣</div>
-      <p style="color:#475569;font-size:0.9rem;">
-        🇨🇳 中文母语 · 🇬🇧 英语流利 (IELTS 7.5) ｜ 兴趣：生成艺术、开源贡献、科技写作、独立游戏
+    <!-- ====== 语言与兴趣 ====== -->
+    <div class="card">
+      <div class="section-title">🌍 语言 & 兴趣</div>
+      <p style="color:#b9c2d9; font-size:0.95rem;">
+        🇨🇳 中文母语 · 🇬🇧 英语流利 (IELTS 7.5) <br>
+        兴趣：生成艺术、开源贡献、科技写作、独立游戏
       </p>
     </div>
 
   </div>
+
+  <script>
+    (function() {
+      // ---------- 打字机效果 ----------
+      const bioText = "探索 AI 与交互设计的边界 · 正在构建下一代智能产品体验。";
+      const bioElement = document.getElementById('typingBio');
+      let charIndex = 0;
+
+      function typeWriter() {
+        if (bioElement && charIndex < bioText.length) {
+          bioElement.innerHTML = bioText.substring(0, charIndex + 1) + '<span class="cursor"></span>';
+          charIndex++;
+          setTimeout(typeWriter, 65);
+        } else if (bioElement) {
+          bioElement.innerHTML = bioText + '<span class="cursor"></span>';
+        }
+      }
+
+      if (bioElement) {
+        typeWriter();
+      }
+
+      // ---------- 星空背景 ----------
+      const canvas = document.getElementById('starsCanvas');
+      if (!canvas) return;
+
+      const ctx = canvas.getContext('2d');
+      let width, height;
+      let stars = [];
+
+      function resizeCanvas() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+      }
+
+      function createStars(count = 160) {
+        stars = [];
+        for (let i = 0; i < count; i++) {
+          stars.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            radius: Math.random() * 2.2 + 0.6,
+            alpha: Math.random(),
+            deltaAlpha: (Math.random() * 0.015) + 0.005,
+            direction: Math.random() > 0.5 ? 1 : -1
+          });
+        }
+      }
+
+      function drawStars() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = '#ffffff';
+
+        for (let s of stars) {
+          s.alpha += s.deltaAlpha * s.direction;
+          if (s.alpha >= 0.95) {
+            s.alpha = 0.95;
+            s.direction = -1;
+          } else if (s.alpha <= 0.15) {
+            s.alpha = 0.15;
+            s.direction = 1;
+          }
+
+          ctx.globalAlpha = s.alpha;
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1.0;
+        requestAnimationFrame(drawStars);
+      }
+
+      resizeCanvas();
+      createStars();
+      drawStars();
+
+      window.addEventListener('resize', () => {
+        resizeCanvas();
+        createStars();
+      });
+    })();
+  </script>
 </body>
 </html>
