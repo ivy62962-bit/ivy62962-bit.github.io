@@ -6,27 +6,25 @@
     <title>李沐阳 | AI 内容策划 · 算法探索者</title>
     <style>
         :root {
-            --bg-deep: #0a0a0f;
-            --bg-dark: #0f0f1a;
-            --bg-card: #12121f;
-            --bg-card-hover: #18182b;
-            --text-primary: #e0e0f0;
-            --text-secondary: #a0a0c0;
-            --text-muted: #6a6a8a;
-            --accent-cyan: #00e5ff;
-            --accent-purple: #b44dff;
-            --accent-pink: #ff3d7f;
-            --accent-blue: #3d7fff;
-            --accent-green: #00e676;
-            --border-glow: rgba(180, 77, 255, 0.3);
-            --border-subtle: rgba(255, 255, 255, 0.06);
-            --glow-cyan: 0 0 30px rgba(0, 229, 255, 0.4);
-            --glow-purple: 0 0 40px rgba(180, 77, 255, 0.5);
-            --glow-pink: 0 0 30px rgba(255, 61, 127, 0.4);
-            --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', 'JetBrains Mono', monospace;
-            --font-sans: 'Inter', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
-            --transition-smooth: cubic-bezier(0.22, 0.61, 0.36, 1);
-            --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --primary: #1e3a5f;
+            --primary-light: #2563eb;
+            --accent: #2563eb;
+            --text: #1f2937;
+            --text-secondary: #4b5563;
+            --text-muted: #6b7280;
+            --bg: #ffffff;
+            --bg-light: #f9fafb;
+            --bg-card: #ffffff;
+            --border: #e5e7eb;
+            --border-light: #f3f4f6;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --max-width: 1100px;
+            --font-sans: 'Inter', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', system-ui, -apple-system, sans-serif;
+            --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
         }
 
         * {
@@ -38,91 +36,54 @@
         html {
             scroll-behavior: smooth;
             scrollbar-width: thin;
-            scrollbar-color: #2a2a4a #0a0a0f;
+            scrollbar-color: #cbd5e1 #f1f5f9;
         }
         ::-webkit-scrollbar {
             width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #0a0a0f;
+            background: #f1f5f9;
         }
         ::-webkit-scrollbar-thumb {
-            background: #2a2a4a;
+            background: #cbd5e1;
             border-radius: 3px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #3d3d6a;
         }
 
         body {
             font-family: var(--font-sans);
-            background: var(--bg-deep);
-            color: var(--text-primary);
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.7;
-            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            cursor: default;
         }
 
-        /* ============ STARFIELD CANVAS ============ */
-        #starfield {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* ============ MOUSE GLOW CURSOR ============ */
-        .cursor-glow {
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            width: 350px;
-            height: 350px;
-            background: radial-gradient(circle, rgba(180, 77, 255, 0.08) 0%, rgba(0, 229, 255, 0.03) 30%, transparent 70%);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: opacity 0.4s ease;
-            will-change: transform, left, top;
-            opacity: 0.7;
-        }
-
-        /* ============ MAIN CONTAINER ============ */
-        .main-container {
-            position: relative;
-            z-index: 1;
-            max-width: 1100px;
+        /* Container */
+        .container {
+            max-width: var(--max-width);
             margin: 0 auto;
             padding: 0 28px;
         }
 
-        /* ============ NAVIGATION ============ */
+        /* Navigation */
         .nav-bar {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 16px 0;
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            background: rgba(10, 10, 20, 0.75);
-            border-bottom: 1px solid var(--border-subtle);
-            transition: all 0.35s var(--transition-smooth);
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            transition: box-shadow 0.3s ease;
         }
         .nav-bar.scrolled {
-            padding: 10px 0;
-            background: rgba(10, 10, 20, 0.9);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: var(--shadow-md);
         }
         .nav-inner {
-            max-width: 1100px;
+            max-width: var(--max-width);
             margin: 0 auto;
-            padding: 0 28px;
+            padding: 14px 28px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -131,35 +92,14 @@
             font-family: var(--font-mono);
             font-size: 1.3rem;
             font-weight: 700;
-            letter-spacing: 0.04em;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--primary);
             text-decoration: none;
-            position: relative;
-        }
-        .nav-logo::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
-            border-radius: 2px;
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.4s var(--transition-smooth);
-        }
-        .nav-logo:hover::after {
-            transform: scaleX(1);
-            transform-origin: left;
+            letter-spacing: 0.04em;
         }
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 32px;
+            gap: 28px;
             align-items: center;
         }
         .nav-links a {
@@ -167,27 +107,14 @@
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 500;
-            letter-spacing: 0.02em;
-            position: relative;
+            transition: color 0.2s ease;
             padding: 4px 0;
-            transition: color 0.3s ease;
+            border-bottom: 2px solid transparent;
         }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 1.5px;
-            background: var(--accent-cyan);
-            border-radius: 2px;
-            transition: width 0.35s var(--transition-smooth);
-        }
-        .nav-links a:hover {
-            color: #fff;
-        }
-        .nav-links a:hover::after {
-            width: 100%;
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
         }
         .nav-hamburger {
             display: none;
@@ -197,257 +124,188 @@
             background: none;
             border: none;
             padding: 6px;
-            z-index: 1001;
         }
         .nav-hamburger span {
             display: block;
-            width: 26px;
+            width: 24px;
             height: 2px;
-            background: var(--text-primary);
+            background: var(--text);
             border-radius: 2px;
-            transition: all 0.3s var(--transition-smooth);
+            transition: all 0.3s ease;
         }
         .nav-hamburger.active span:nth-child(1) {
             transform: rotate(45deg) translate(5px, 5px);
         }
         .nav-hamburger.active span:nth-child(2) {
             opacity: 0;
-            transform: scaleX(0);
         }
         .nav-hamburger.active span:nth-child(3) {
             transform: rotate(-45deg) translate(5px, -5px);
         }
 
-        /* ============ HERO SECTION ============ */
+        /* Hero */
         .hero-section {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            padding: 120px 0 60px;
-        }
-        .hero-content {
             text-align: center;
-            position: relative;
-            z-index: 2;
+            padding: 120px 0 60px;
+            background: linear-gradient(to bottom, #f8fafc 0%, #ffffff 100%);
         }
         .hero-badge {
             display: inline-block;
-            padding: 8px 20px;
-            border: 1px solid var(--border-glow);
+            padding: 6px 18px;
+            background: #eff6ff;
+            color: var(--accent);
             border-radius: 50px;
-            font-size: 0.8rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--accent-cyan);
-            margin-bottom: 28px;
-            backdrop-filter: blur(10px);
-            background: rgba(0, 229, 255, 0.04);
-            animation: badgePulse 3s ease-in-out infinite;
-        }
-        @keyframes badgePulse {
-            0%,
-            100% {
-                box-shadow: 0 0 15px rgba(0, 229, 255, 0.15);
-            }
-            50% {
-                box-shadow: 0 0 35px rgba(0, 229, 255, 0.35);
-            }
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            margin-bottom: 24px;
         }
         .hero-title {
-            font-size: clamp(2.8rem, 6vw, 4.8rem);
+            font-size: clamp(2.5rem, 5.5vw, 3.8rem);
             font-weight: 800;
             letter-spacing: -0.02em;
-            line-height: 1.1;
+            color: var(--primary);
             margin-bottom: 12px;
+            line-height: 1.2;
         }
-        .hero-title .glitch-text {
-            display: inline-block;
-            position: relative;
-            background: linear-gradient(135deg, #fff 20%, var(--accent-cyan) 50%, var(--accent-purple) 80%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shimmer 4s ease-in-out infinite;
-            background-size: 300% 300%;
-        }
-        @keyframes shimmer {
-            0%,
-            100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
+        .hero-title span {
+            color: var(--accent);
         }
         .hero-subtitle {
             font-size: 1.2rem;
             color: var(--text-secondary);
             font-weight: 400;
-            margin-bottom: 10px;
-            letter-spacing: 0.03em;
+            margin-bottom: 8px;
         }
         .hero-typing-wrapper {
             font-family: var(--font-mono);
-            font-size: 1rem;
-            color: var(--accent-green);
-            min-height: 28px;
-            margin-bottom: 36px;
-            letter-spacing: 0.02em;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            min-height: 24px;
+            margin-bottom: 32px;
         }
         .hero-typing-wrapper .cursor-blink {
             display: inline-block;
             width: 2px;
             height: 1.1em;
-            background: var(--accent-green);
-            margin-left: 2px;
+            background: var(--accent);
+            margin-left: 4px;
             vertical-align: text-bottom;
             animation: blink 0.8s step-end infinite;
         }
         @keyframes blink {
-            50% {
-                opacity: 0;
-            }
+            50% { opacity: 0; }
         }
         .hero-cta-group {
             display: flex;
-            gap: 18px;
+            gap: 14px;
             justify-content: center;
             flex-wrap: wrap;
         }
-        .btn-primary {
+        .btn {
             display: inline-block;
-            padding: 14px 34px;
-            border-radius: 50px;
+            padding: 12px 28px;
+            border-radius: 6px;
             font-weight: 600;
             font-size: 0.95rem;
-            letter-spacing: 0.03em;
             text-decoration: none;
+            transition: all 0.25s ease;
             cursor: pointer;
-            border: none;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s var(--transition-bounce);
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+            border: 2px solid transparent;
+        }
+        .btn-primary {
+            background: var(--accent);
             color: #fff;
-            box-shadow: 0 8px 35px rgba(180, 77, 255, 0.35);
+            border-color: var(--accent);
         }
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 14px 45px rgba(180, 77, 255, 0.5);
+            background: #1d4ed8;
+            border-color: #1d4ed8;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
         }
         .btn-outline {
-            display: inline-block;
-            padding: 14px 34px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            letter-spacing: 0.03em;
-            text-decoration: none;
-            cursor: pointer;
-            border: 1.5px solid rgba(255, 255, 255, 0.3);
             background: transparent;
-            color: #fff;
-            transition: all 0.4s var(--transition-bounce);
-            backdrop-filter: blur(6px);
+            color: var(--accent);
+            border-color: var(--accent);
         }
         .btn-outline:hover {
-            border-color: var(--accent-cyan);
-            box-shadow: 0 0 30px rgba(0, 229, 255, 0.25);
-            transform: translateY(-3px);
-            background: rgba(0, 229, 255, 0.06);
+            background: #eff6ff;
+            transform: translateY(-1px);
         }
 
-        /* ============ SECTION STYLES ============ */
+        /* Sections */
         .section {
             padding: 80px 0;
-            position: relative;
         }
         .section-header {
             text-align: center;
-            margin-bottom: 56px;
+            margin-bottom: 48px;
         }
         .section-tag {
-            display: inline-block;
             font-family: var(--font-mono);
-            font-size: 0.78rem;
-            letter-spacing: 0.1em;
-            color: var(--accent-purple);
+            font-size: 0.8rem;
+            letter-spacing: 0.06em;
+            color: var(--accent);
             text-transform: uppercase;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            display: block;
         }
         .section-title {
-            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-size: 2rem;
             font-weight: 700;
-            letter-spacing: -0.01em;
-            margin-bottom: 12px;
+            color: var(--primary);
+            margin-bottom: 10px;
         }
         .section-line {
             display: block;
-            width: 60px;
+            width: 50px;
             height: 3px;
-            border-radius: 3px;
-            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            background: var(--accent);
             margin: 0 auto;
+            border-radius: 2px;
         }
 
-        /* ============ ABOUT SECTION ============ */
+        /* About */
         .about-grid {
             display: grid;
-            grid-template-columns: 1fr 1.2fr;
+            grid-template-columns: 1fr 1.5fr;
             gap: 50px;
             align-items: center;
         }
-        .about-visual {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .about-avatar-ring {
-            width: 220px;
-            height: 220px;
+        .about-avatar {
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
-            padding: 4px;
-            background: conic-gradient(from 0deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink), var(--accent-cyan));
-            animation: rotateRing 8s linear infinite;
-            box-shadow: var(--glow-purple);
-        }
-        @keyframes rotateRing {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-        .about-avatar-inner {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: var(--bg-dark);
+            background: #e2e8f0;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: var(--font-mono);
-            font-size: 3.5rem;
-            font-weight: 800;
-            background: radial-gradient(circle at 40% 40%, #1a1a35, #0a0a18);
-            color: var(--accent-cyan);
-            text-shadow: 0 0 40px rgba(0, 229, 255, 0.6);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0 auto;
+            box-shadow: var(--shadow-lg);
         }
         .about-text h3 {
-            font-size: 1.5rem;
-            margin-bottom: 16px;
+            font-size: 1.4rem;
             font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--primary);
         }
         .about-text p {
             color: var(--text-secondary);
             margin-bottom: 14px;
-            font-size: 0.95rem;
         }
         .about-stats {
             display: flex;
             gap: 28px;
-            margin-top: 24px;
+            margin-top: 20px;
             flex-wrap: wrap;
         }
         .about-stat {
@@ -455,64 +313,42 @@
         }
         .about-stat-number {
             font-family: var(--font-mono);
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--accent);
         }
         .about-stat-label {
             font-size: 0.8rem;
             color: var(--text-muted);
         }
 
-        /* ============ SKILLS SECTION ============ */
+        /* Skills */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 24px;
         }
-        .skill-category-card {
+        .skill-card {
             background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
             padding: 28px 24px;
-            transition: all 0.4s var(--transition-smooth);
-            position: relative;
-            overflow: hidden;
+            transition: box-shadow 0.2s ease, border-color 0.2s ease;
+            box-shadow: var(--shadow-sm);
         }
-        .skill-category-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 20%, rgba(180, 77, 255, 0.06), transparent 60%);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            pointer-events: none;
-        }
-        .skill-category-card:hover::before {
-            opacity: 1;
-        }
-        .skill-category-card:hover {
-            border-color: var(--border-glow);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), var(--glow-purple);
-            background: var(--bg-card-hover);
+        .skill-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
         }
         .skill-card-icon {
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin-bottom: 12px;
-            display: block;
         }
         .skill-card-title {
             font-weight: 600;
             font-size: 1.05rem;
             margin-bottom: 14px;
-            letter-spacing: 0.02em;
+            color: var(--primary);
         }
         .skill-tags {
             display: flex;
@@ -521,96 +357,64 @@
         }
         .skill-tag {
             display: inline-block;
-            padding: 6px 14px;
+            padding: 5px 12px;
+            background: #f1f5f9;
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 500;
-            letter-spacing: 0.02em;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            cursor: default;
+            color: var(--text-secondary);
+            transition: background 0.2s;
         }
         .skill-tag:hover {
-            border-color: var(--accent-cyan);
-            box-shadow: 0 0 18px rgba(0, 229, 255, 0.25);
-            background: rgba(0, 229, 255, 0.08);
-            color: #fff;
+            background: #dbeafe;
+            color: var(--accent);
         }
 
-        /* ============ PROJECTS SECTION ============ */
+        /* Projects */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
-            gap: 28px;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 24px;
         }
         .project-card {
             background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: 18px;
-            padding: 30px 26px;
-            transition: all 0.45s var(--transition-smooth);
-            position: relative;
-            overflow: hidden;
-            cursor: default;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            transition: box-shadow 0.2s ease, border-color 0.2s ease;
+            box-shadow: var(--shadow-sm);
             display: flex;
             flex-direction: column;
         }
-        .project-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 18px;
-            padding: 1.5px;
-            background: linear-gradient(135deg, transparent 40%, rgba(180, 77, 255, 0.4), rgba(0, 229, 255, 0.4), transparent 80%);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            pointer-events: none;
-        }
-        .project-card:hover::after {
-            opacity: 1;
-        }
         .project-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
-            border-color: transparent;
-            background: var(--bg-card-hover);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
         }
         .project-card-header {
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
             margin-bottom: 10px;
-            gap: 12px;
         }
         .project-card-title {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            letter-spacing: 0.01em;
-            flex: 1;
+            color: var(--primary);
         }
         .project-badge {
-            display: inline-block;
-            padding: 4px 12px;
+            background: #eff6ff;
+            color: var(--accent);
+            padding: 3px 10px;
             border-radius: 20px;
             font-size: 0.7rem;
             font-weight: 600;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
             white-space: nowrap;
-            background: rgba(0, 229, 255, 0.1);
-            color: var(--accent-cyan);
-            border: 1px solid rgba(0, 229, 255, 0.25);
+            letter-spacing: 0.03em;
         }
         .project-card-meta {
             font-size: 0.8rem;
             color: var(--text-muted);
             margin-bottom: 12px;
-            font-family: var(--font-mono);
         }
         .project-card-desc {
             color: var(--text-secondary);
@@ -622,84 +426,16 @@
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
-            margin-top: auto;
         }
         .project-card-tech span {
-            font-family: var(--font-mono);
             font-size: 0.72rem;
+            background: #f1f5f9;
             padding: 4px 10px;
             border-radius: 12px;
-            background: rgba(255, 255, 255, 0.04);
-            color: var(--text-muted);
-            letter-spacing: 0.02em;
-            transition: all 0.3s ease;
-        }
-        .project-card:hover .project-card-tech span {
             color: var(--text-secondary);
-            background: rgba(255, 255, 255, 0.06);
         }
 
-        /* ============ EXPERIENCE TIMELINE ============ */
-        .timeline {
-            position: relative;
-            padding-left: 40px;
-        }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 15px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(180deg, var(--accent-purple), var(--accent-cyan), transparent);
-            border-radius: 2px;
-        }
-        .timeline-item {
-            position: relative;
-            margin-bottom: 40px;
-            padding-left: 28px;
-        }
-        .timeline-dot {
-            position: absolute;
-            left: -33px;
-            top: 4px;
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: var(--accent-purple);
-            box-shadow: 0 0 20px rgba(180, 77, 255, 0.6);
-            z-index: 1;
-            transition: all 0.4s ease;
-        }
-        .timeline-item:hover .timeline-dot {
-            box-shadow: 0 0 35px rgba(180, 77, 255, 0.9);
-            transform: scale(1.3);
-            background: var(--accent-cyan);
-        }
-        .timeline-date {
-            font-family: var(--font-mono);
-            font-size: 0.78rem;
-            color: var(--accent-cyan);
-            letter-spacing: 0.04em;
-            margin-bottom: 4px;
-        }
-        .timeline-title {
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 2px;
-        }
-        .timeline-subtitle {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-        }
-        .timeline-desc {
-            color: var(--text-secondary);
-            font-size: 0.88rem;
-            line-height: 1.6;
-        }
-
-        /* ============ BLOG SECTION (AI内容策划核心展示) ============ */
+        /* Blog */
         .blog-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -707,39 +443,24 @@
         }
         .blog-card {
             background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
             overflow: hidden;
-            transition: all 0.4s var(--transition-smooth);
-            cursor: pointer;
+            transition: box-shadow 0.2s ease;
+            box-shadow: var(--shadow-sm);
             display: flex;
             flex-direction: column;
         }
         .blog-card:hover {
-            border-color: var(--border-glow);
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-            background: var(--bg-card-hover);
+            box-shadow: var(--shadow-md);
         }
         .blog-card-image {
-            height: 160px;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(135deg, #1a1a35 0%, #0d0d22 50%, #1a1030 100%);
+            height: 140px;
+            background: #f1f5f9;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            transition: all 0.5s ease;
-        }
-        .blog-card:hover .blog-card-image {
-            filter: brightness(1.2);
-        }
-        .blog-card-image .blog-card-emoji {
-            transition: transform 0.5s var(--transition-bounce);
-        }
-        .blog-card:hover .blog-card-image .blog-card-emoji {
-            transform: scale(1.2) rotate(-8deg);
+            font-size: 2.5rem;
         }
         .blog-card-body {
             padding: 20px;
@@ -750,87 +471,116 @@
         .blog-card-category {
             font-family: var(--font-mono);
             font-size: 0.7rem;
-            letter-spacing: 0.06em;
+            letter-spacing: 0.05em;
+            color: var(--accent);
             text-transform: uppercase;
-            color: var(--accent-purple);
             margin-bottom: 6px;
         }
         .blog-card-title {
             font-weight: 700;
-            font-size: 1.05rem;
+            font-size: 1rem;
             margin-bottom: 8px;
+            color: var(--primary);
             line-height: 1.4;
-            transition: color 0.3s ease;
-        }
-        .blog-card:hover .blog-card-title {
-            color: var(--accent-cyan);
         }
         .blog-card-excerpt {
             color: var(--text-muted);
             font-size: 0.83rem;
-            line-height: 1.5;
             flex: 1;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
         .blog-card-meta-row {
             display: flex;
             justify-content: space-between;
-            align-items: center;
             font-size: 0.75rem;
             color: var(--text-muted);
         }
         .blog-card-readmore {
-            color: var(--accent-cyan);
+            color: var(--accent);
             font-weight: 600;
-            letter-spacing: 0.02em;
             text-decoration: none;
-            transition: all 0.3s ease;
         }
         .blog-card-readmore:hover {
-            text-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
+            text-decoration: underline;
         }
 
-        /* ============ CONTACT SECTION ============ */
-        .contact-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: 20px;
-            padding: 40px;
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
-            transition: all 0.4s var(--transition-smooth);
+        /* Timeline */
+        .timeline {
             position: relative;
-            overflow: hidden;
+            padding-left: 30px;
         }
-        .contact-card::before {
+        .timeline::before {
             content: '';
             position: absolute;
-            inset: -1px;
-            border-radius: 20px;
-            padding: 1px;
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan), var(--accent-pink));
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0.35;
-            pointer-events: none;
-            transition: opacity 0.5s ease;
+            left: 9px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #e2e8f0;
         }
-        .contact-card:hover::before {
-            opacity: 0.7;
+        .timeline-item {
+            position: relative;
+            margin-bottom: 36px;
+            padding-left: 28px;
         }
-        .contact-card:hover {
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        .timeline-dot {
+            position: absolute;
+            left: -26px;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 2px solid #fff;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.2);
+            z-index: 1;
+        }
+        .timeline-date {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .timeline-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--primary);
+        }
+        .timeline-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+        .timeline-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Contact */
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 36px;
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: var(--shadow-sm);
         }
         .contact-card h3 {
-            font-size: 1.6rem;
-            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+        .contact-card p {
+            color: var(--text-secondary);
+            margin-bottom: 8px;
         }
         .contact-links {
             display: flex;
-            gap: 16px;
+            gap: 14px;
             justify-content: center;
             flex-wrap: wrap;
             margin-top: 20px;
@@ -840,89 +590,44 @@
             align-items: center;
             gap: 8px;
             padding: 10px 20px;
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--text-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text);
             text-decoration: none;
             font-size: 0.9rem;
-            transition: all 0.35s var(--transition-smooth);
+            transition: background 0.2s, border-color 0.2s;
         }
         .contact-link-item:hover {
-            border-color: var(--accent-cyan);
-            box-shadow: var(--glow-cyan);
-            background: rgba(0, 229, 255, 0.06);
+            background: #f8fafc;
+            border-color: var(--accent);
         }
 
-        /* ============ FOOTER ============ */
+        /* Footer */
         .footer {
             text-align: center;
-            padding: 40px 0;
+            padding: 32px 0;
             color: var(--text-muted);
             font-size: 0.8rem;
-            border-top: 1px solid var(--border-subtle);
-            margin-top: 40px;
+            border-top: 1px solid var(--border-light);
+            margin-top: 20px;
         }
 
-        /* ============ SCROLL REVEAL (修复：默认可见) ============ */
-        .reveal {
-            /* 修复点：默认 opacity: 1，确保页面加载时内容直接可见 */
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity 0.8s ease, transform 0.8s var(--transition-smooth);
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .reveal-delay-1 {
-            transition-delay: 0.1s;
-        }
-        .reveal-delay-2 {
-            transition-delay: 0.2s;
-        }
-        .reveal-delay-3 {
-            transition-delay: 0.3s;
-        }
-
-        /* ============ PARTICLES ON HOVER ============ */
-        .spark-container {
-            position: relative;
-        }
-        .spark {
-            position: absolute;
-            pointer-events: none;
-            border-radius: 50%;
-            animation: sparkFly 0.8s ease-out forwards;
-            z-index: 10;
-        }
-        @keyframes sparkFly {
-            0% {
-                transform: translate(0, 0) scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(var(--sx), var(--sy)) scale(0);
-                opacity: 0;
-            }
-        }
-
-        /* ============ RESPONSIVE ============ */
+        /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
                 position: fixed;
                 top: 0;
                 right: -100%;
                 width: 70%;
-                max-width: 320px;
+                max-width: 300px;
                 height: 100vh;
                 flex-direction: column;
-                background: rgba(15, 15, 28, 0.95);
-                backdrop-filter: blur(30px);
+                background: white;
                 padding: 100px 30px 40px;
                 gap: 24px;
-                transition: right 0.4s var(--transition-smooth);
-                border-left: 1px solid var(--border-subtle);
-                z-index: 1000;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.05);
+                border-left: 1px solid var(--border);
             }
             .nav-links.active {
                 right: 0;
@@ -935,77 +640,34 @@
                 gap: 30px;
                 text-align: center;
             }
-            .about-avatar-ring {
-                width: 160px;
-                height: 160px;
-            }
-            .about-avatar-inner {
-                font-size: 2.5rem;
+            .about-avatar {
+                margin: 0 auto;
             }
             .about-stats {
                 justify-content: center;
             }
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
+            .projects-grid,
             .blog-grid {
                 grid-template-columns: 1fr;
             }
-            .hero-title {
-                font-size: 2.2rem;
-            }
-            .section {
-                padding: 50px 0;
-            }
             .timeline {
-                padding-left: 30px;
+                padding-left: 24px;
             }
             .timeline::before {
-                left: 10px;
+                left: 5px;
             }
             .timeline-dot {
-                left: -28px;
-                width: 10px;
-                height: 10px;
-            }
-            .cursor-glow {
-                display: none;
-            }
-        }
-        @media (max-width: 480px) {
-            .hero-cta-group {
-                flex-direction: column;
-                align-items: center;
-            }
-            .btn-primary,
-            .btn-outline {
-                width: 100%;
-                text-align: center;
-            }
-            .contact-card {
-                padding: 24px;
-            }
-            .project-card {
-                padding: 20px 18px;
+                left: -22px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- STARFIELD BACKGROUND -->
-    <canvas id="starfield"></canvas>
-
-    <!-- MOUSE GLOW -->
-    <div class="cursor-glow" id="cursorGlow"></div>
-
-    <!-- NAVIGATION -->
+    <!-- Navigation -->
     <nav class="nav-bar" id="navBar">
         <div class="nav-inner">
-            <a href="#hero" class="nav-logo">&lt;LMY/&gt;</a>
+            <a href="#hero" class="nav-logo">李沐阳</a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#about">关于</a></li>
                 <li><a href="#skills">技能</a></li>
@@ -1020,501 +682,392 @@
         </div>
     </nav>
 
-    <!-- MAIN CONTENT -->
-    <div class="main-container">
-
-        <!-- HERO -->
+    <main>
+        <!-- Hero -->
         <section class="hero-section" id="hero">
-            <div class="hero-content">
-                <span class="hero-badge">🚀 AI 内容策划 · 算法探索者</span>
-                <h1 class="hero-title">
-                    <span class="glitch-text">李沐阳</span>
-                </h1>
+            <div class="container">
+                <div class="hero-badge">🚀 AI 内容策划 · 算法探索者</div>
+                <h1 class="hero-title">李沐阳</h1>
                 <p class="hero-subtitle">人工智能专业 · 用代码解构世界，用文字传播技术</p>
                 <div class="hero-typing-wrapper">
                     <span id="typingText"></span><span class="cursor-blink">|</span>
                 </div>
                 <div class="hero-cta-group">
-                    <a href="#projects" class="btn-primary">查看作品集</a>
-                    <a href="#blog" class="btn-outline">阅读博客</a>
-                    <a href="https://github.com/limuyang123" target="_blank" rel="noopener" class="btn-outline">GitHub</a>
+                    <a href="#projects" class="btn btn-primary">查看作品集</a>
+                    <a href="#blog" class="btn btn-outline">阅读博客</a>
+                    <a href="https://github.com/limuyang123" target="_blank" rel="noopener" class="btn btn-outline">GitHub</a>
                 </div>
             </div>
         </section>
 
-        <!-- ABOUT -->
+        <!-- About -->
         <section class="section" id="about">
-            <div class="section-header reveal">
-                <span class="section-tag">// 01. 关于我</span>
-                <h2 class="section-title">跨界思考，深耕AI</h2>
-                <span class="section-line"></span>
-            </div>
-            <div class="about-grid">
-                <div class="about-visual reveal reveal-delay-1">
-                    <div class="about-avatar-ring">
-                        <div class="about-avatar-inner">LMY</div>
-                    </div>
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">// 01. 关于我</span>
+                    <h2 class="section-title">跨界思考，深耕AI</h2>
+                    <span class="section-line"></span>
                 </div>
-                <div class="about-text reveal reveal-delay-2">
-                    <h3>你好，我是李沐阳 👋</h3>
-                    <p>
-                        南华大学人工智能专业大三在读，GPA <strong>3.85/4.0</strong>（专业前5%），中共预备党员。我热衷于将<strong>AI技术与内容策划</strong>相结合——既能用PyTorch训练模型，也擅长用文字让复杂算法变得通俗易懂。
-                    </p>
-                    <p>
-                        曾在<strong>中科智联科技</strong>担任AI算法实习生，将图像识别模型准确率从85%提升至92%；作为核心成员获得全国大学生人工智能创新大赛<strong>省级二等奖</strong>。我相信，优秀的AI内容策划者，需要兼具技术深度与表达广度。
-                    </p>
-                    <div class="about-stats">
-                        <div class="about-stat">
-                            <div class="about-stat-number">3.85</div>
-                            <div class="about-stat-label">专业GPA</div>
-                        </div>
-                        <div class="about-stat">
-                            <div class="about-stat-number">5+</div>
-                            <div class="about-stat-label">竞赛获奖</div>
-                        </div>
-                        <div class="about-stat">
-                            <div class="about-stat-number">8+</div>
-                            <div class="about-stat-label">实战项目</div>
-                        </div>
-                        <div class="about-stat">
-                            <div class="about-stat-number">2</div>
-                            <div class="about-stat-label">实习经历</div>
+                <div class="about-grid">
+                    <div class="about-avatar">LMY</div>
+                    <div class="about-text">
+                        <h3>你好，我是李沐阳 👋</h3>
+                        <p>
+                            南华大学人工智能专业大三在读，GPA <strong>3.85/4.0</strong>（专业前5%），中共预备党员。我热衷于将<strong>AI技术与内容策划</strong>相结合——既能用PyTorch训练模型，也擅长用文字让复杂算法变得通俗易懂。
+                        </p>
+                        <p>
+                            曾在<strong>中科智联科技</strong>担任AI算法实习生，将图像识别模型准确率从85%提升至92%；作为核心成员获得全国大学生人工智能创新大赛<strong>省级二等奖</strong>。我相信，优秀的AI内容策划者，需要兼具技术深度与表达广度。
+                        </p>
+                        <div class="about-stats">
+                            <div class="about-stat">
+                                <div class="about-stat-number">3.85</div>
+                                <div class="about-stat-label">专业GPA</div>
+                            </div>
+                            <div class="about-stat">
+                                <div class="about-stat-number">5+</div>
+                                <div class="about-stat-label">竞赛获奖</div>
+                            </div>
+                            <div class="about-stat">
+                                <div class="about-stat-number">8+</div>
+                                <div class="about-stat-label">实战项目</div>
+                            </div>
+                            <div class="about-stat">
+                                <div class="about-stat-number">2</div>
+                                <div class="about-stat-label">实习经历</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SKILLS -->
-        <section class="section" id="skills">
-            <div class="section-header reveal">
-                <span class="section-tag">// 02. 技能矩阵</span>
-                <h2 class="section-title">技术栈 & 能力域</h2>
-                <span class="section-line"></span>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-category-card reveal spark-container" data-spark>
-                    <span class="skill-card-icon">🧠</span>
-                    <h3 class="skill-card-title">AI / 机器学习</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">PyTorch</span><span class="skill-tag">TensorFlow</span>
-                        <span class="skill-tag">CNN</span><span class="skill-tag">LSTM</span>
-                        <span class="skill-tag">BERT</span><span class="skill-tag">YOLO系列</span>
-                        <span class="skill-tag">U-Net</span><span class="skill-tag">注意力机制</span>
-                    </div>
+        <!-- Skills -->
+        <section class="section" id="skills" style="background: var(--bg-light);">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">// 02. 技能矩阵</span>
+                    <h2 class="section-title">技术栈 & 能力域</h2>
+                    <span class="section-line"></span>
                 </div>
-                <div class="skill-category-card reveal spark-container" data-spark>
-                    <span class="skill-card-icon">💻</span>
-                    <h3 class="skill-card-title">编程 & 工具</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Python</span><span class="skill-tag">C++</span>
-                        <span class="skill-tag">OpenCV</span><span class="skill-tag">SQL</span>
-                        <span class="skill-tag">Linux</span><span class="skill-tag">Docker</span>
-                        <span class="skill-tag">Git</span><span class="skill-tag">Flask</span>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-card-icon">🧠</div>
+                        <h3 class="skill-card-title">AI / 机器学习</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">PyTorch</span><span class="skill-tag">TensorFlow</span>
+                            <span class="skill-tag">CNN</span><span class="skill-tag">LSTM</span>
+                            <span class="skill-tag">BERT</span><span class="skill-tag">YOLO系列</span>
+                            <span class="skill-tag">U-Net</span><span class="skill-tag">注意力机制</span>
+                        </div>
                     </div>
-                </div>
-                <div class="skill-category-card reveal spark-container" data-spark>
-                    <span class="skill-card-icon">📝</span>
-                    <h3 class="skill-card-title">内容策划能力</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">技术文档撰写</span><span class="skill-tag">论文解读</span>
-                        <span class="skill-tag">数据可视化</span><span class="skill-tag">技术博客</span>
-                        <span class="skill-tag">英文文献阅读</span><span class="skill-tag">CET-6</span>
-                        <span class="skill-tag">顶会动态追踪</span>
+                    <div class="skill-card">
+                        <div class="skill-card-icon">💻</div>
+                        <h3 class="skill-card-title">编程 & 工具</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Python</span><span class="skill-tag">C++</span>
+                            <span class="skill-tag">OpenCV</span><span class="skill-tag">SQL</span>
+                            <span class="skill-tag">Linux</span><span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Git</span><span class="skill-tag">Flask</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-card-icon">📝</div>
+                        <h3 class="skill-card-title">内容策划能力</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">技术文档撰写</span><span class="skill-tag">论文解读</span>
+                            <span class="skill-tag">数据可视化</span><span class="skill-tag">技术博客</span>
+                            <span class="skill-tag">英文文献阅读</span><span class="skill-tag">CET-6</span>
+                            <span class="skill-tag">顶会动态追踪</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- PROJECTS -->
+        <!-- Projects -->
         <section class="section" id="projects">
-            <div class="section-header reveal">
-                <span class="section-tag">// 03. 作品精选</span>
-                <h2 class="section-title">项目作品集</h2>
-                <span class="section-line"></span>
-            </div>
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <div class="project-card reveal spark-container" data-spark>
-                    <div class="project-card-header">
-                        <h3 class="project-card-title">🧠 智能图像分割系统</h3>
-                        <span class="project-badge">省级二等奖</span>
-                    </div>
-                    <div class="project-card-meta">2024.04 - 2024.08 · 核心算法工程师</div>
-                    <p class="project-card-desc">
-                        基于改进U-Net的医疗影像分割，引入注意力机制，筛选10000+张医疗影像数据。
-                        分割准确率较基础U-Net提升<strong>8.3%</strong>，推理速度提升15%。代码已开源至GitHub。
-                    </p>
-                    <div class="project-card-tech">
-                        <span>PyTorch</span><span>U-Net</span><span>OpenCV</span><span>注意力机制</span><span>医疗AI</span>
-                    </div>
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">// 03. 作品精选</span>
+                    <h2 class="section-title">项目作品集</h2>
+                    <span class="section-line"></span>
                 </div>
-                <!-- Project 2 -->
-                <div class="project-card reveal spark-container" data-spark>
-                    <div class="project-card-header">
-                        <h3 class="project-card-title">📝 BERT文本情感分析工具</h3>
-                        <span class="project-badge">个人项目</span>
-                    </div>
-                    <div class="project-card-meta">2024.05 - 2024.06 · 独立开发</div>
-                    <p class="project-card-desc">
-                        基于Hugging Face Transformers库，微调BERT预训练模型，实现文本情感三分类（正面/负面/中性）。
-                        支持命令行与可视化界面双模式，适用于电商评论分析与社交媒体情感监测。
-                    </p>
-                    <div class="project-card-tech">
-                        <span>BERT</span><span>Transformers</span><span>Pandas</span><span>NLP</span><span>情感分析</span>
-                    </div>
-                </div>
-                <!-- Project 3 -->
-                <div class="project-card reveal spark-container" data-spark>
-                    <div class="project-card-header">
-                        <h3 class="project-card-title">♻️ 智能垃圾分类系统</h3>
-                        <span class="project-badge">团队核心</span>
-                    </div>
-                    <div class="project-card-meta">2024.01 - 2024.03 · 数据集构建 & 模型优化</div>
-                    <p class="project-card-desc">
-                        收集5000+张各类垃圾图像，基于YOLOv7微调，解决垃圾形态多样、背景复杂的识别难题。
-                        使用Flask搭建后端服务，实现完整的前后端交互系统。
-                    </p>
-                    <div class="project-card-tech">
-                        <span>YOLOv7</span><span>Flask</span><span>OpenCV</span><span>计算机视觉</span><span>全栈</span>
-                    </div>
-                </div>
-                <!-- Project 4 -->
-                <div class="project-card reveal spark-container" data-spark>
-                    <div class="project-card-header">
-                        <h3 class="project-card-title">📈 LSTM股票价格预测</h3>
-                        <span class="project-badge">个人项目</span>
-                    </div>
-                    <div class="project-card-meta">2023.10 - 2023.11 · 独立开发</div>
-                    <p class="project-card-desc">
-                        使用Tushare获取5年股票历史数据，搭建LSTM时间序列预测模型，解决长期依赖问题。
-                        通过MAE、RMSE指标验证模型有效性，撰写详细项目报告。
-                    </p>
-                    <div class="project-card-tech">
-                        <span>LSTM</span><span>PyTorch</span><span>Pandas</span><span>时间序列</span><span>金融AI</span>
-                    </div>
-                </div>
-                <!-- Project 5 -->
-                <div class="project-card reveal spark-container" data-spark>
-                    <div class="project-card-header">
-                        <h3 class="project-card-title">✍️ CNN手写数字识别</h3>
-                        <span class="project-badge">个人项目</span>
-                    </div>
-                    <div class="project-card-meta">2023.03 - 2023.04 · 独立开发</div>
-                    <p class="project-card-desc">
-                        基于TensorFlow搭建3层卷积+2层池化+2层全连接的CNN网络，使用MNIST数据集训练，
-                        识别准确率达<strong>99.2%</strong>。使用PyQt5开发可视化交互界面。
-                    </p>
-                    <div class="project-card-tech">
-                        <span>TensorFlow</span><span>CNN</span><span>PyQt5</span><span>MNIST</span><span>GUI</span>
-                    </div>
-                </div>
-                <!-- Project 6 -->
-                <div class="project-card reveal spark-container" data-spark>
-                    <div class="project-card-header">
-                        <h3 class="project-card-title">🌫️ 城市空气质量预测</h3>
-                        <span class="project-badge">省级三等奖</span>
-                    </div>
-                    <div class="project-card-meta">2023.09 - 2023.10 · 建模与算法实现</div>
-                    <p class="project-card-desc">
-                        全国大学生数学建模竞赛作品。对比线性回归、随机森林、LSTM三种模型，
-                        预测准确率达89.2%，使用Matplotlib/Seaborn进行数据可视化分析。
-                    </p>
-                    <div class="project-card-tech">
-                        <span>LSTM</span><span>随机森林</span><span>Matplotlib</span><span>数学建模</span><span>特征工程</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- BLOG (核心：展示AI内容策划能力) -->
-        <section class="section" id="blog">
-            <div class="section-header reveal">
-                <span class="section-tag">// 04. 内容策划精选</span>
-                <h2 class="section-title">技术博客 & 深度文章</h2>
-                <span class="section-line"></span>
-                <p style="color:var(--text-muted);margin-top:12px;font-size:0.9rem;">
-                    以下是展示<strong style="color:var(--accent-cyan);">AI内容策划能力</strong>的原创文章，涵盖技术科普、行业洞察、实战复盘与论文解读
-                </p>
-            </div>
-            <div class="blog-grid">
-                <!-- Blog 1 -->
-                <div class="blog-card reveal spark-container" data-spark>
-                    <div class="blog-card-image">
-                        <span class="blog-card-emoji">🔬</span>
-                    </div>
-                    <div class="blog-card-body">
-                        <span class="blog-card-category">技术科普</span>
-                        <h3 class="blog-card-title">注意力机制到底在"注意"什么？——从人类视觉到Transformer的直觉理解</h3>
-                        <p class="blog-card-excerpt">
-                            用生活化比喻拆解Attention机制的核心思想，配合可视化动图，让非技术背景读者也能理解Q/K/V的运作原理。适合作为AI内容策划的科普范本。
+                <div class="projects-grid">
+                    <!-- 项目卡片省略，与原内容相同但使用新样式类 -->
+                    <!-- 此处仅展示一个示例，完整项目请参照原HTML中的6个项目 -->
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <h3 class="project-card-title">🧠 智能图像分割系统</h3>
+                            <span class="project-badge">省级二等奖</span>
+                        </div>
+                        <div class="project-card-meta">2024.04 - 2024.08 · 核心算法工程师</div>
+                        <p class="project-card-desc">
+                            基于改进U-Net的医疗影像分割，引入注意力机制，筛选10000+张医疗影像数据。
+                            分割准确率较基础U-Net提升<strong>8.3%</strong>，推理速度提升15%。代码已开源至GitHub。
                         </p>
-                        <div class="blog-card-meta-row">
-                            <span>2024.12 · 阅读 2.3k</span>
-                            <span class="blog-card-readmore">阅读全文 →</span>
+                        <div class="project-card-tech">
+                            <span>PyTorch</span><span>U-Net</span><span>OpenCV</span><span>注意力机制</span><span>医疗AI</span>
                         </div>
                     </div>
-                </div>
-                <!-- Blog 2 -->
-                <div class="blog-card reveal spark-container" data-spark>
-                    <div class="blog-card-image">
-                        <span class="blog-card-emoji">📊</span>
-                    </div>
-                    <div class="blog-card-body">
-                        <span class="blog-card-category">行业洞察</span>
-                        <h3 class="blog-card-title">2025 AI趋势：多模态大模型的下一个战场在哪里？</h3>
-                        <p class="blog-card-excerpt">
-                            基于NeurIPS 2024与ICML最新论文，梳理多模态AI的技术演进路线，分析OpenAI、Google、Meta等巨头的战略布局差异，提出对AI内容从业者的机遇判断。
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <h3 class="project-card-title">📝 BERT文本情感分析工具</h3>
+                            <span class="project-badge">个人项目</span>
+                        </div>
+                        <div class="project-card-meta">2024.05 - 2024.06 · 独立开发</div>
+                        <p class="project-card-desc">
+                            基于Hugging Face Transformers库，微调BERT预训练模型，实现文本情感三分类（正面/负面/中性）。
+                            支持命令行与可视化界面双模式，适用于电商评论分析与社交媒体情感监测。
                         </p>
-                        <div class="blog-card-meta-row">
-                            <span>2025.01 · 阅读 4.1k</span>
-                            <span class="blog-card-readmore">阅读全文 →</span>
+                        <div class="project-card-tech">
+                            <span>BERT</span><span>Transformers</span><span>Pandas</span><span>NLP</span><span>情感分析</span>
                         </div>
                     </div>
-                </div>
-                <!-- Blog 3 -->
-                <div class="blog-card reveal spark-container" data-spark>
-                    <div class="blog-card-image">
-                        <span class="blog-card-emoji">🛠️</span>
-                    </div>
-                    <div class="blog-card-body">
-                        <span class="blog-card-category">实战复盘</span>
-                        <h3 class="blog-card-title">从85%到92%：一个图像识别项目的优化全记录</h3>
-                        <p class="blog-card-excerpt">
-                            复盘在中科智联实习期间的真实项目经验，详细记录数据清洗策略、超参数调优思路、以及如何用Docker完成模型部署——附带完整踩坑日志与解决方案。
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <h3 class="project-card-title">♻️ 智能垃圾分类系统</h3>
+                            <span class="project-badge">团队核心</span>
+                        </div>
+                        <div class="project-card-meta">2024.01 - 2024.03 · 数据集构建 & 模型优化</div>
+                        <p class="project-card-desc">
+                            收集5000+张各类垃圾图像，基于YOLOv7微调，解决垃圾形态多样、背景复杂的识别难题。
+                            使用Flask搭建后端服务，实现完整的前后端交互系统。
                         </p>
-                        <div class="blog-card-meta-row">
-                            <span>2024.10 · 阅读 5.7k</span>
-                            <span class="blog-card-readmore">阅读全文 →</span>
+                        <div class="project-card-tech">
+                            <span>YOLOv7</span><span>Flask</span><span>OpenCV</span><span>计算机视觉</span><span>全栈</span>
                         </div>
                     </div>
-                </div>
-                <!-- Blog 4 -->
-                <div class="blog-card reveal spark-container" data-spark>
-                    <div class="blog-card-image">
-                        <span class="blog-card-emoji">📖</span>
-                    </div>
-                    <div class="blog-card-body">
-                        <span class="blog-card-category">论文解读</span>
-                        <h3 class="blog-card-title">YOLOv8核心改进点精读：锚框自由检测是怎样炼成的？</h3>
-                        <p class="blog-card-excerpt">
-                            逐段解析YOLOv8论文的关键创新，用图表对比YOLOv5/v7/v8的架构差异，解释Anchor-Free设计为何能提升小目标检测性能——适合想快速了解目标检测前沿的读者。
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <h3 class="project-card-title">📈 LSTM股票价格预测</h3>
+                            <span class="project-badge">个人项目</span>
+                        </div>
+                        <div class="project-card-meta">2023.10 - 2023.11 · 独立开发</div>
+                        <p class="project-card-desc">
+                            使用Tushare获取5年股票历史数据，搭建LSTM时间序列预测模型，解决长期依赖问题。
+                            通过MAE、RMSE指标验证模型有效性，撰写详细项目报告。
                         </p>
-                        <div class="blog-card-meta-row">
-                            <span>2024.08 · 阅读 3.9k</span>
-                            <span class="blog-card-readmore">阅读全文 →</span>
+                        <div class="project-card-tech">
+                            <span>LSTM</span><span>PyTorch</span><span>Pandas</span><span>时间序列</span><span>金融AI</span>
                         </div>
                     </div>
-                </div>
-                <!-- Blog 5 -->
-                <div class="blog-card reveal spark-container" data-spark>
-                    <div class="blog-card-image">
-                        <span class="blog-card-emoji">🎯</span>
-                    </div>
-                    <div class="blog-card-body">
-                        <span class="blog-card-category">内容方法论</span>
-                        <h3 class="blog-card-title">AI技术内容策划的黄金法则：如何让晦涩算法"说人话"？</h3>
-                        <p class="blog-card-excerpt">
-                            结合自身经验总结AI内容策划的5条核心原则：类比先行、可视化优先、分层叙述、场景锚定、互动设计。附真实案例对比——同一篇论文的两种写法，阅读量相差10倍。
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <h3 class="project-card-title">✍️ CNN手写数字识别</h3>
+                            <span class="project-badge">个人项目</span>
+                        </div>
+                        <div class="project-card-meta">2023.03 - 2023.04 · 独立开发</div>
+                        <p class="project-card-desc">
+                            基于TensorFlow搭建3层卷积+2层池化+2层全连接的CNN网络，使用MNIST数据集训练，
+                            识别准确率达<strong>99.2%</strong>。使用PyQt5开发可视化交互界面。
                         </p>
-                        <div class="blog-card-meta-row">
-                            <span>2025.02 · 阅读 6.8k</span>
-                            <span class="blog-card-readmore">阅读全文 →</span>
+                        <div class="project-card-tech">
+                            <span>TensorFlow</span><span>CNN</span><span>PyQt5</span><span>MNIST</span><span>GUI</span>
                         </div>
                     </div>
-                </div>
-                <!-- Blog 6 -->
-                <div class="blog-card reveal spark-container" data-spark>
-                    <div class="blog-card-image">
-                        <span class="blog-card-emoji">🌐</span>
-                    </div>
-                    <div class="blog-card-body">
-                        <span class="blog-card-category">技术教程</span>
-                        <h3 class="blog-card-title">从零搭建AI模型部署流水线：Docker + Flask + GitHub Actions</h3>
-                        <p class="blog-card-excerpt">
-                            手把手教程，覆盖模型导出、Docker镜像构建、Flask API封装、以及CI/CD自动化部署全流程。适合AI开发者从"只会训练"进阶到"能交付上线"。
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <h3 class="project-card-title">🌫️ 城市空气质量预测</h3>
+                            <span class="project-badge">省级三等奖</span>
+                        </div>
+                        <div class="project-card-meta">2023.09 - 2023.10 · 建模与算法实现</div>
+                        <p class="project-card-desc">
+                            全国大学生数学建模竞赛作品。对比线性回归、随机森林、LSTM三种模型，
+                            预测准确率达89.2%，使用Matplotlib/Seaborn进行数据可视化分析。
                         </p>
-                        <div class="blog-card-meta-row">
-                            <span>2024.11 · 阅读 7.2k</span>
-                            <span class="blog-card-readmore">阅读全文 →</span>
+                        <div class="project-card-tech">
+                            <span>LSTM</span><span>随机森林</span><span>Matplotlib</span><span>数学建模</span><span>特征工程</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- EXPERIENCE TIMELINE -->
+        <!-- Blog -->
+        <section class="section" id="blog" style="background: var(--bg-light);">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">// 04. 内容策划精选</span>
+                    <h2 class="section-title">技术博客 & 深度文章</h2>
+                    <span class="section-line"></span>
+                    <p style="color:var(--text-muted);margin-top:12px;font-size:0.9rem;">
+                        以下展示<strong style="color:var(--accent);">AI内容策划能力</strong>的原创文章
+                    </p>
+                </div>
+                <div class="blog-grid">
+                    <!-- 博客卡片与原始内容一致，采用新样式 -->
+                    <div class="blog-card">
+                        <div class="blog-card-image">🔬</div>
+                        <div class="blog-card-body">
+                            <span class="blog-card-category">技术科普</span>
+                            <h3 class="blog-card-title">注意力机制到底在"注意"什么？——从人类视觉到Transformer的直觉理解</h3>
+                            <p class="blog-card-excerpt">
+                                用生活化比喻拆解Attention机制的核心思想，配合可视化动图，让非技术背景读者也能理解Q/K/V的运作原理。
+                            </p>
+                            <div class="blog-card-meta-row">
+                                <span>2024.12 · 阅读 2.3k</span>
+                                <span class="blog-card-readmore">阅读全文 →</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <div class="blog-card-image">📊</div>
+                        <div class="blog-card-body">
+                            <span class="blog-card-category">行业洞察</span>
+                            <h3 class="blog-card-title">2025 AI趋势：多模态大模型的下一个战场在哪里？</h3>
+                            <p class="blog-card-excerpt">
+                                基于NeurIPS 2024与ICML最新论文，梳理多模态AI的技术演进路线，分析巨头战略布局差异。
+                            </p>
+                            <div class="blog-card-meta-row">
+                                <span>2025.01 · 阅读 4.1k</span>
+                                <span class="blog-card-readmore">阅读全文 →</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <div class="blog-card-image">🛠️</div>
+                        <div class="blog-card-body">
+                            <span class="blog-card-category">实战复盘</span>
+                            <h3 class="blog-card-title">从85%到92%：一个图像识别项目的优化全记录</h3>
+                            <p class="blog-card-excerpt">
+                                复盘在中科智联实习期间的真实项目经验，详细记录数据清洗策略、超参数调优思路及Docker部署踩坑日志。
+                            </p>
+                            <div class="blog-card-meta-row">
+                                <span>2024.10 · 阅读 5.7k</span>
+                                <span class="blog-card-readmore">阅读全文 →</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <div class="blog-card-image">📖</div>
+                        <div class="blog-card-body">
+                            <span class="blog-card-category">论文解读</span>
+                            <h3 class="blog-card-title">YOLOv8核心改进点精读：锚框自由检测是怎样炼成的？</h3>
+                            <p class="blog-card-excerpt">
+                                逐段解析YOLOv8论文的关键创新，用图表对比YOLOv5/v7/v8的架构差异，解释Anchor-Free设计。
+                            </p>
+                            <div class="blog-card-meta-row">
+                                <span>2024.08 · 阅读 3.9k</span>
+                                <span class="blog-card-readmore">阅读全文 →</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <div class="blog-card-image">🎯</div>
+                        <div class="blog-card-body">
+                            <span class="blog-card-category">内容方法论</span>
+                            <h3 class="blog-card-title">AI技术内容策划的黄金法则：如何让晦涩算法"说人话"？</h3>
+                            <p class="blog-card-excerpt">
+                                总结AI内容策划的5条核心原则：类比先行、可视化优先、分层叙述、场景锚定、互动设计。
+                            </p>
+                            <div class="blog-card-meta-row">
+                                <span>2025.02 · 阅读 6.8k</span>
+                                <span class="blog-card-readmore">阅读全文 →</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <div class="blog-card-image">🌐</div>
+                        <div class="blog-card-body">
+                            <span class="blog-card-category">技术教程</span>
+                            <h3 class="blog-card-title">从零搭建AI模型部署流水线：Docker + Flask + GitHub Actions</h3>
+                            <p class="blog-card-excerpt">
+                                手把手教程，覆盖模型导出、Docker镜像构建、Flask API封装、以及CI/CD自动化部署全流程。
+                            </p>
+                            <div class="blog-card-meta-row">
+                                <span>2024.11 · 阅读 7.2k</span>
+                                <span class="blog-card-readmore">阅读全文 →</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience -->
         <section class="section" id="experience">
-            <div class="section-header reveal">
-                <span class="section-tag">// 05. 经历时间线</span>
-                <h2 class="section-title">教育 · 实习 · 科研</h2>
-                <span class="section-line"></span>
-            </div>
-            <div class="timeline reveal">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">2022.09 - 2026.06</div>
-                    <div class="timeline-title">南华大学 · 人工智能专业</div>
-                    <div class="timeline-subtitle">本科在读 · GPA 3.85/4.0（前5%）</div>
-                    <div class="timeline-desc">
-                        核心课程均90+：机器学习、深度学习、计算机视觉、NLP、数据结构与算法。连续两年获校级一等奖学金、"三好学生""优秀学习标兵"。通过计算机二级Python、三级数据库技术考试。
-                    </div>
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">// 05. 经历时间线</span>
+                    <h2 class="section-title">教育 · 实习 · 科研</h2>
+                    <span class="section-line"></span>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">2024.07 - 2024.09</div>
-                    <div class="timeline-title">中科智联科技 · AI算法实习生</div>
-                    <div class="timeline-subtitle">人工智能研发部</div>
-                    <div class="timeline-desc">
-                        协助图像识别项目，完成2000+张图像标注与数据集扩充；基于TensorFlow复现CNN模型，优化超参数使训练时间缩短20%；参与Docker模型部署测试，提出3条优化建议均被采纳；模型准确率从85%提升至92%，成功应用于公司智能检测模块。
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2022.09 - 2026.06</div>
+                        <div class="timeline-title">南华大学 · 人工智能专业</div>
+                        <div class="timeline-subtitle">本科在读 · GPA 3.85/4.0（前5%）</div>
+                        <div class="timeline-desc">
+                            核心课程均90+：机器学习、深度学习、计算机视觉、NLP、数据结构与算法。连续两年获校级一等奖学金、"三好学生""优秀学习标兵"。
+                        </div>
                     </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">2023.11 - 2024.06</div>
-                    <div class="timeline-title">南华大学AI实验室 · 科研助理</div>
-                    <div class="timeline-subtitle">兼职 · 深度学习目标检测方向</div>
-                    <div class="timeline-desc">
-                        协助导师改进YOLOv8模型特征提取模块，提升小目标检测准确率；参与撰写科研论文1篇（已投稿核心期刊）；负责实验室服务器维护与训练任务管理；协助指导低年级学生完成科研入门训练。
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2024.07 - 2024.09</div>
+                        <div class="timeline-title">中科智联科技 · AI算法实习生</div>
+                        <div class="timeline-subtitle">人工智能研发部</div>
+                        <div class="timeline-desc">
+                            协助图像识别项目，完成2000+张图像标注与数据集扩充；基于TensorFlow复现CNN模型，优化超参数使训练时间缩短20%；模型准确率从85%提升至92%。
+                        </div>
                     </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">2024.04 - 2024.08</div>
-                    <div class="timeline-title">全国大学生人工智能创新大赛 · 省级二等奖</div>
-                    <div class="timeline-subtitle">核心算法工程师（3人团队）</div>
-                    <div class="timeline-desc">
-                        基于改进U-Net的智能医疗影像分割系统，引入注意力机制解决小目标分割难题，准确率提升8.3%，推理速度提升15%。
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2023.11 - 2024.06</div>
+                        <div class="timeline-title">南华大学AI实验室 · 科研助理</div>
+                        <div class="timeline-subtitle">兼职 · 深度学习目标检测方向</div>
+                        <div class="timeline-desc">
+                            协助导师改进YOLOv8模型特征提取模块，提升小目标检测准确率；参与撰写科研论文1篇（已投稿核心期刊）。
+                        </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CONTACT -->
-        <section class="section" id="contact">
-            <div class="section-header reveal">
-                <span class="section-tag">// 06. 取得联系</span>
-                <h2 class="section-title">一起聊聊AI与内容</h2>
-                <span class="section-line"></span>
-            </div>
-            <div class="contact-card reveal">
-                <h3>📬 期待与你交流</h3>
-                <p style="color:var(--text-secondary);margin-bottom:8px;">
-                    如果你对AI技术传播、内容策划感兴趣，或者有合作机会——欢迎随时联系我。
-                </p>
-                <p style="color:var(--text-muted);font-size:0.85rem;">
-                    📧 limuyang@email.com &nbsp;|&nbsp; 📱 138XXXX8901
-                </p>
-                <div class="contact-links">
-                    <a href="mailto:limuyang@email.com" class="contact-link-item">📧 发送邮件</a>
-                    <a href="https://github.com/limuyang123" target="_blank" rel="noopener" class="contact-link-item">💻 GitHub</a>
-                    <a href="#" class="contact-link-item">📄 下载简历PDF</a>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2024.04 - 2024.08</div>
+                        <div class="timeline-title">全国大学生人工智能创新大赛 · 省级二等奖</div>
+                        <div class="timeline-subtitle">核心算法工程师（3人团队）</div>
+                        <div class="timeline-desc">
+                            基于改进U-Net的智能医疗影像分割系统，引入注意力机制解决小目标分割难题，准确率提升8.3%。
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- FOOTER -->
-        <footer class="footer">
+        <!-- Contact -->
+        <section class="section" id="contact" style="background: var(--bg-light);">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">// 06. 取得联系</span>
+                    <h2 class="section-title">一起聊聊AI与内容</h2>
+                    <span class="section-line"></span>
+                </div>
+                <div class="contact-card">
+                    <h3>📬 期待与你交流</h3>
+                    <p>如果你对AI技术传播、内容策划感兴趣，或者有合作机会——欢迎随时联系我。</p>
+                    <p style="font-size:0.85rem;color:var(--text-muted);">
+                        📧 limuyang@email.com &nbsp;|&nbsp; 📱 138XXXX8901
+                    </p>
+                    <div class="contact-links">
+                        <a href="mailto:limuyang@email.com" class="contact-link-item">📧 发送邮件</a>
+                        <a href="https://github.com/limuyang123" target="_blank" rel="noopener" class="contact-link-item">💻 GitHub</a>
+                        <a href="#" class="contact-link-item">📄 下载简历PDF</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
             <p>© 2025 李沐阳 · 用代码与文字，连接AI与大众</p>
             <p style="font-size:0.7rem;margin-top:4px;">Built with passion for AI & Content Strategy</p>
-        </footer>
-
-    </div>
+        </div>
+    </footer>
 
     <script>
-        // ============ STARFIELD ============
-        const starCanvas = document.getElementById('starfield');
-        const starCtx = starCanvas.getContext('2d');
-        let stars = [];
-        const STAR_COUNT = 200;
-
-        function resizeStarCanvas() {
-            starCanvas.width = window.innerWidth;
-            starCanvas.height = window.innerHeight;
-        }
-        resizeStarCanvas();
-        window.addEventListener('resize', () => {
-            resizeStarCanvas();
-            initStars();
-        });
-
-        function initStars() {
-            stars = [];
-            for (let i = 0; i < STAR_COUNT; i++) {
-                stars.push({
-                    x: Math.random() * starCanvas.width,
-                    y: Math.random() * starCanvas.height,
-                    r: Math.random() * 1.6 + 0.3,
-                    speed: Math.random() * 0.4 + 0.15,
-                    opacity: Math.random() * 0.7 + 0.3,
-                    twinkleSpeed: Math.random() * 0.02 + 0.005,
-                    twinkleOffset: Math.random() * Math.PI * 2,
-                });
-            }
-        }
-        initStars();
-
-        function drawStars(time) {
-            starCtx.clearRect(0, 0, starCanvas.width, starCanvas.height);
-            for (const s of stars) {
-                const twinkle = Math.sin(time * s.twinkleSpeed + s.twinkleOffset) * 0.35 + 0.65;
-                const alpha = s.opacity * twinkle;
-                starCtx.beginPath();
-                starCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-                starCtx.fillStyle = `rgba(200,210,255,${alpha})`;
-                starCtx.fill();
-                if (s.r > 1.0 && alpha > 0.55) {
-                    starCtx.beginPath();
-                    starCtx.arc(s.x, s.y, s.r * 2.5, 0, Math.PI * 2);
-                    starCtx.fillStyle = `rgba(180,200,255,${alpha * 0.18})`;
-                    starCtx.fill();
-                }
-                s.y -= s.speed;
-                if (s.y < -5) {
-                    s.y = starCanvas.height + 5;
-                    s.x = Math.random() * starCanvas.width;
-                }
-            }
-        }
-
-        // ============ MOUSE GLOW ============
-        const cursorGlow = document.getElementById('cursorGlow');
-        let mouseX = -500;
-        let mouseY = -500;
-        let targetMouseX = -500;
-        let targetMouseY = -500;
-
-        document.addEventListener('mousemove', (e) => {
-            targetMouseX = e.clientX;
-            targetMouseY = e.clientY;
-        });
-        document.addEventListener('mouseleave', () => {
-            targetMouseX = -500;
-            targetMouseY = -500;
-        });
-
-        function updateCursorGlow() {
-            mouseX += (targetMouseX - mouseX) * 0.08;
-            mouseY += (targetMouseY - mouseY) * 0.08;
-            cursorGlow.style.left = mouseX + 'px';
-            cursorGlow.style.top = mouseY + 'px';
-            const isNear = Math.abs(targetMouseX - mouseX) < 600 && Math.abs(targetMouseY - mouseY) < 600;
-            cursorGlow.style.opacity = isNear && targetMouseX > 0 ? '0.7' : '0';
-        }
-
-        // ============ NAVIGATION ============
-        const navBar = document.getElementById('navBar');
-        const navLinks = document.getElementById('navLinks');
+        // 移动端导航菜单
         const navHamburger = document.getElementById('navHamburger');
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 60) {
-                navBar.classList.add('scrolled');
-            } else {
-                navBar.classList.remove('scrolled');
-            }
-        });
-
+        const navLinks = document.getElementById('navLinks');
         navHamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             navHamburger.classList.toggle('active');
@@ -1526,9 +1079,19 @@
             });
         });
 
-        // ============ TYPING EFFECT ============
+        // 导航栏滚动阴影
+        const navBar = document.getElementById('navBar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                navBar.classList.add('scrolled');
+            } else {
+                navBar.classList.remove('scrolled');
+            }
+        });
+
+        // 打字效果（简化版）
         const typingTextEl = document.getElementById('typingText');
-        const typingPhrases = [
+        const phrases = [
             '> 正在构建神经网络...',
             '> 探索AI与内容的交叉点...',
             '> 用文字让算法变得可感知...',
@@ -1541,7 +1104,7 @@
         let typingSpeed = 80;
 
         function typeLoop() {
-            const currentPhrase = typingPhrases[phraseIndex];
+            const currentPhrase = phrases[phraseIndex];
             if (isDeleting) {
                 charIndex--;
                 typingSpeed = 35;
@@ -1555,81 +1118,31 @@
                 isDeleting = true;
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % typingPhrases.length;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
                 typingSpeed = 400;
             }
             setTimeout(typeLoop, typingSpeed);
         }
         typeLoop();
 
-        // ============ SCROLL REVEAL ============
-        const revealEls = document.querySelectorAll('.reveal');
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-        revealEls.forEach(el => revealObserver.observe(el));
-
-        // ============ SPARK EFFECT ON HOVER ============
-        document.querySelectorAll('.spark-container[data-spark]').forEach(container => {
-            container.addEventListener('mousemove', function(e) {
-                const rect = this.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const spark = document.createElement('span');
-                spark.classList.add('spark');
-                spark.style.left = x + 'px';
-                spark.style.top = y + 'px';
-                spark.style.width = (Math.random() * 5 + 2) + 'px';
-                spark.style.height = spark.style.width;
-                const colors = ['#00e5ff', '#b44dff', '#ff3d7f', '#00e676', '#ffffff'];
-                spark.style.background = colors[Math.floor(Math.random() * colors.length)];
-                spark.style.boxShadow = `0 0 10px ${spark.style.background}`;
-                spark.style.setProperty('--sx', (Math.random() - 0.5) * 80 + 'px');
-                spark.style.setProperty('--sy', (Math.random() - 0.5) * 80 + 'px');
-                this.appendChild(spark);
-                setTimeout(() => spark.remove(), 800);
-            });
-        });
-
-        // ============ ANIMATION LOOP ============
-        let animTime = 0;
-
-        function animate(timestamp) {
-            animTime = timestamp;
-            drawStars(timestamp);
-            updateCursorGlow();
-            requestAnimationFrame(animate);
-        }
-        requestAnimationFrame(animate);
-
-        // ============ NAV LINK ACTIVE STATE ON SCROLL ============
+        // 滚动高亮当前导航链接
         const sections = document.querySelectorAll('section[id]');
         const allNavLinks = document.querySelectorAll('.nav-links a');
         window.addEventListener('scroll', () => {
             let current = '';
             sections.forEach(section => {
-                const sectionTop = section.offsetTop - 150;
+                const sectionTop = section.offsetTop - 120;
                 if (window.scrollY >= sectionTop) {
                     current = section.getAttribute('id');
                 }
             });
             allNavLinks.forEach(link => {
-                link.style.color = '';
+                link.classList.remove('active');
                 if (link.getAttribute('href') === '#' + current) {
-                    link.style.color = '#fff';
+                    link.classList.add('active');
                 }
             });
         });
-
-        console.log('%c🚀 李沐阳 · AI内容策划作品集 %c已就绪',
-            'font-size:1.2em;font-weight:bold;color:#00e5ff;',
-            'color:#b44dff;');
-        console.log('%c💡 试试在卡片上移动鼠标，观察粒子特效 ✨', 'color:#a0a0c0;');
-        console.log('%c📬 联系邮箱: limuyang@email.com', 'color:#6a6a8a;');
     </script>
 </body>
 </html>
