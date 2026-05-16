@@ -2,8 +2,8 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Limuyang · AI 作品集</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人简历 · Limuyang</title>
   <style>
     * {
       margin: 0;
@@ -12,322 +12,305 @@
     }
 
     body {
-      background: #0b0d17;
-      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
-      min-height: 100vh;
+      background: #f8fafc;
+      font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+      color: #1e293b;
       display: flex;
-      align-items: center;
       justify-content: center;
-      position: relative;
-      overflow-x: hidden;
+      padding: 2rem 1rem;
+      line-height: 1.6;
     }
 
-    /* 深邃星空背景 */
-    .stars {
-      position: fixed;
-      top: 0;
-      left: 0;
+    .resume {
+      max-width: 800px;
       width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
+      background: #ffffff;
+      border-radius: 1.5rem;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.03);
+      padding: 2.5rem 2.8rem;
     }
 
-    .card {
-      position: relative;
-      z-index: 10;
-      backdrop-filter: blur(18px) saturate(180%);
-      -webkit-backdrop-filter: blur(18px) saturate(180%);
-      background: rgba(18, 20, 40, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 2.5rem;
-      padding: 3rem 2.5rem;
-      max-width: 720px;
-      width: 90%;
-      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
-      color: #eef5ff;
-      transition: all 0.3s ease;
+    @media (max-width: 600px) {
+      .resume {
+        padding: 1.8rem 1.5rem;
+      }
     }
 
-    .profile {
+    /* 头部 */
+    .header {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 1.5rem;
+    }
+
+    .name-section h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: #475569;
+      margin-top: 0.3rem;
+      font-weight: 500;
+    }
+
+    .contact {
+      text-align: right;
+      font-size: 0.9rem;
+      color: #475569;
+    }
+
+    .contact p {
+      margin-bottom: 0.3rem;
+      display: flex;
       align-items: center;
-      text-align: center;
-      gap: 0.5rem;
+      justify-content: flex-end;
+      gap: 0.4rem;
+    }
+
+    .contact a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    .contact a:hover {
+      text-decoration: underline;
+    }
+
+    /* 章节通用 */
+    .section {
       margin-bottom: 2rem;
     }
 
-    .avatar {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    .section-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #1e293b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 1rem;
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 3.5rem;
-      font-weight: 500;
-      color: white;
-      box-shadow: 0 10px 25px rgba(79, 70, 229, 0.45);
-      margin-bottom: 0.5rem;
-      user-select: none;
+      gap: 0.5rem;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 600;
-      letter-spacing: -0.5px;
-      background: linear-gradient(to right, #e0e7ff, #c4b5fd);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .badge {
-      background: rgba(167, 139, 250, 0.18);
-      color: #c4b5fd;
-      padding: 0.3rem 1.2rem;
-      border-radius: 30px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      border: 1px solid rgba(196, 181, 253, 0.35);
-      margin-top: 0.3rem;
-    }
-
-    .bio {
-      color: #b9c2d9;
-      margin: 1.5rem 0 2rem;
-      line-height: 1.7;
-      font-size: 1.05rem;
-      text-align: center;
-      min-height: 3.5rem;
-    }
-
-    /* 打字机光标 */
-    .cursor {
+    .section-title::before {
+      content: '';
       display: inline-block;
-      width: 2px;
-      background: #a78bfa;
-      margin-left: 2px;
-      animation: blink 1s step-end infinite;
+      width: 4px;
+      height: 20px;
+      background: #2563eb;
+      border-radius: 2px;
     }
 
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
+    /* 经历卡片 */
+    .item {
+      margin-bottom: 1.3rem;
     }
 
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1.2rem;
-      margin: 2rem 0 2.2rem;
-    }
-
-    .project-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 1.5rem;
-      padding: 1.5rem 1rem;
-      text-align: center;
-      transition: transform 0.25s, background 0.3s, border-color 0.3s;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-    }
-
-    .project-card:hover {
-      transform: translateY(-6px);
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.25);
-    }
-
-    .project-emoji {
-      font-size: 2.3rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .project-title {
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: #f1f5f9;
-      margin-bottom: 0.3rem;
-    }
-
-    .project-desc {
-      font-size: 0.8rem;
-      color: #94a3b8;
-    }
-
-    .links {
+    .item-header {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
+      align-items: baseline;
       flex-wrap: wrap;
-      gap: 1.2rem;
-      margin-top: 0.8rem;
     }
 
-    .link-item {
-      color: #cbd5e1;
-      text-decoration: none;
+    .item-header h3 {
+      font-weight: 650;
+      font-size: 1.1rem;
+      color: #0f172a;
+    }
+
+    .item-date {
+      font-size: 0.85rem;
+      color: #64748b;
       font-weight: 500;
+    }
+
+    .item-subtitle {
+      font-size: 0.95rem;
+      color: #334155;
+      margin: 0.2rem 0 0.5rem;
+    }
+
+    .item-desc {
+      font-size: 0.9rem;
+      color: #475569;
+      margin-left: 0.5rem;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+      margin-top: 0.3rem;
+      color: #475569;
+      font-size: 0.9rem;
+    }
+
+    li {
+      margin-bottom: 0.25rem;
+    }
+
+    /* 技能标签 */
+    .skills-grid {
       display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.5rem 1.2rem;
-      border-radius: 40px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: all 0.2s;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
     }
 
-    .link-item:hover {
-      background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(255, 255, 255, 0.25);
-      color: white;
+    .skill-tag {
+      background: #f1f5f9;
+      color: #1e293b;
+      padding: 0.4rem 1rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: 1px solid #e2e8f0;
     }
 
-    @media (max-width: 500px) {
-      .card {
-        padding: 2rem 1.5rem;
+    /* 打印样式 */
+    @media print {
+      body {
+        background: white;
+        padding: 0;
       }
-      h1 {
-        font-size: 2rem;
+      .resume {
+        box-shadow: none;
+        border-radius: 0;
       }
     }
   </style>
 </head>
 <body>
-  <!-- 星空画布 -->
-  <canvas class="stars" id="starsCanvas"></canvas>
+  <div class="resume">
 
-  <div class="card">
-    <div class="profile">
-      <div class="avatar">🧑‍🚀</div>
-      <h1>Limuyang</h1>
-      <div class="badge">AI 产品设计师 · 创意技术开发者</div>
-    </div>
-
-    <div class="bio" id="typingBio"></div>
-
-    <div class="projects">
-      <div class="project-card">
-        <div class="project-emoji">🤖</div>
-        <div class="project-title">智能对话引擎</div>
-        <div class="project-desc">企业级AI助手</div>
+    <!-- 姓名 + 联系方式 -->
+    <div class="header">
+      <div class="name-section">
+        <h1>Limuyang</h1>
+        <div class="subtitle">AI 产品设计师 · 全栈开发 · 创意技术专家</div>
       </div>
-      <div class="project-card">
-        <div class="project-emoji">🎨</div>
-        <div class="project-title">风格迁移工具</div>
-        <div class="project-desc">视觉设计自动化</div>
-      </div>
-      <div class="project-card">
-        <div class="project-emoji">📊</div>
-        <div class="project-title">数据可视化</div>
-        <div class="project-desc">实时洞察仪表盘</div>
+      <div class="contact">
+        <p>📧 <a href="mailto:limuyang@example.com">limuyang@example.com</a></p>
+        <p>📱 +86 138 0000 0000</p>
+        <p>🌐 <a href="#">portfoliosite.com</a></p>
+        <p>📍 中国 · 上海</p>
       </div>
     </div>
 
-    <div class="links">
-      <a href="#" class="link-item">
-        <span>📁</span> GitHub
-      </a>
-      <a href="#" class="link-item">
-        <span>💼</span> 项目
-      </a>
-      <a href="#" class="link-item">
-        <span>✉️</span> 联系
-      </a>
+    <!-- 个人简介 -->
+    <div class="section">
+      <div class="section-title">关于我</div>
+      <p style="color:#475569;font-size:0.95rem;">
+        热衷于探索人工智能与交互设计的交叉领域，拥有从 0 到 1 搭建智能产品的经验。
+        善于将复杂技术转化为直观、有温度的用户体验。在团队中常担任桥梁角色，推动设计与工程的协同创新。
+      </p>
     </div>
+
+    <!-- 工作经历 -->
+    <div class="section">
+      <div class="section-title">工作经历</div>
+      
+      <div class="item">
+        <div class="item-header">
+          <h3>高级产品设计师 · 某科技有限公司</h3>
+          <span class="item-date">2023.06 – 至今</span>
+        </div>
+        <div class="item-subtitle">AI 创新实验室</div>
+        <ul>
+          <li>主导公司核心 AI 产品的交互设计与视觉系统，用户满意度提升 35%</li>
+          <li>使用 React 与 FastAPI 搭建内部工具原型，缩短需求验证周期 50%</li>
+          <li>建立设计规范组件库，使跨团队协作效率翻倍</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <h3>创意技术开发者 · 独立工作室</h3>
+          <span class="item-date">2021.08 – 2023.05</span>
+        </div>
+        <div class="item-subtitle">生成式艺术 & 交互装置</div>
+        <ul>
+          <li>开发基于 Stable Diffusion 的实时风格迁移应用，月活跃用户 20K+</li>
+          <li>为品牌客户设计交互式数据可视化大屏，获得红点设计奖</li>
+          <li>维护开源项目 “MuseVue”，GitHub Stars 1.2k</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 项目经历 -->
+    <div class="section">
+      <div class="section-title">项目精选</div>
+
+      <div class="item">
+        <div class="item-header">
+          <h3>🤖 智能对话引擎</h3>
+          <span class="item-date">2024</span>
+        </div>
+        <div class="item-desc">企业级 RAG 框架，集成多种大模型，私有化部署知识库。负责全栈架构与前端实现。</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <h3>🎨 风格迁移工具</h3>
+          <span class="item-date">2023</span>
+        </div>
+        <div class="item-desc">浏览器端 AI 图像处理，基于 ONNX Runtime Web。无需后端，保护用户隐私。</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <h3>📊 实时洞察仪表盘</h3>
+          <span class="item-date">2022</span>
+        </div>
+        <div class="item-desc">为金融客户开发的实时数据可视化平台，支持 WebSocket 推送，毫秒级渲染。</div>
+      </div>
+    </div>
+
+    <!-- 技能 -->
+    <div class="section">
+      <div class="section-title">技能与技术</div>
+      <div class="skills-grid">
+        <span class="skill-tag">React / Next.js</span>
+        <span class="skill-tag">Python / FastAPI</span>
+        <span class="skill-tag">Figma / 交互设计</span>
+        <span class="skill-tag">Three.js / D3.js</span>
+        <span class="skill-tag">Stable Diffusion / LoRA</span>
+        <span class="skill-tag">WebSocket</span>
+        <span class="skill-tag">PostgreSQL</span>
+        <span class="skill-tag">Docker</span>
+        <span class="skill-tag">Git / CI/CD</span>
+        <span class="skill-tag">产品策略</span>
+      </div>
+    </div>
+
+    <!-- 教育背景 -->
+    <div class="section">
+      <div class="section-title">教育</div>
+      <div class="item">
+        <div class="item-header">
+          <h3>设计学硕士 · 某知名大学</h3>
+          <span class="item-date">2019 – 2021</span>
+        </div>
+        <div class="item-desc">人机交互方向 · 优秀毕业生</div>
+      </div>
+    </div>
+
+    <!-- 语言与兴趣 -->
+    <div class="section">
+      <div class="section-title">语言 & 兴趣</div>
+      <p style="color:#475569;font-size:0.9rem;">
+        🇨🇳 中文母语 · 🇬🇧 英语流利 (IELTS 7.5) ｜ 兴趣：生成艺术、开源贡献、科技写作、独立游戏
+      </p>
+    </div>
+
   </div>
-
-  <script>
-    (function() {
-      // ---------- 打字机效果 ----------
-      const bioText = "探索 AI 与交互设计的边界 · 正在构建下一代智能产品体验。";
-      const bioElement = document.getElementById('typingBio');
-      let charIndex = 0;
-
-      function typeWriter() {
-        if (bioElement && charIndex < bioText.length) {
-          bioElement.innerHTML = bioText.substring(0, charIndex + 1) + '<span class="cursor"></span>';
-          charIndex++;
-          setTimeout(typeWriter, 65);
-        } else if (bioElement) {
-          // 打字结束后保留光标继续闪烁
-          bioElement.innerHTML = bioText + '<span class="cursor"></span>';
-        }
-      }
-
-      // 启动打字机
-      if (bioElement) {
-        typeWriter();
-      }
-
-      // ---------- 星空背景 ----------
-      const canvas = document.getElementById('starsCanvas');
-      if (!canvas) return;
-
-      const ctx = canvas.getContext('2d');
-      let width, height;
-      let stars = [];
-
-      function resizeCanvas() {
-        width = window.innerWidth;
-        height = window.innerHeight;
-        canvas.width = width;
-        canvas.height = height;
-      }
-
-      function createStars(count = 160) {
-        stars = [];
-        for (let i = 0; i < count; i++) {
-          stars.push({
-            x: Math.random() * width,
-            y: Math.random() * height,
-            radius: Math.random() * 2.2 + 0.6,
-            alpha: Math.random(),
-            deltaAlpha: (Math.random() * 0.015) + 0.005,
-            direction: Math.random() > 0.5 ? 1 : -1
-          });
-        }
-      }
-
-      function drawStars() {
-        ctx.clearRect(0, 0, width, height);
-        ctx.fillStyle = '#ffffff';
-
-        for (let s of stars) {
-          // 星星闪烁
-          s.alpha += s.deltaAlpha * s.direction;
-          if (s.alpha >= 0.95) {
-            s.alpha = 0.95;
-            s.direction = -1;
-          } else if (s.alpha <= 0.15) {
-            s.alpha = 0.15;
-            s.direction = 1;
-          }
-
-          ctx.globalAlpha = s.alpha;
-          ctx.beginPath();
-          ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
-          ctx.fill();
-        }
-        ctx.globalAlpha = 1.0;
-        requestAnimationFrame(drawStars);
-      }
-
-      // 初始化星空
-      resizeCanvas();
-      createStars();
-      drawStars();
-
-      // 窗口大小改变时重新绘制
-      window.addEventListener('resize', () => {
-        resizeCanvas();
-        createStars();
-      });
-    })();
-  </script>
 </body>
 </html>
